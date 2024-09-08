@@ -440,8 +440,6 @@ PRODUCT_PACKAGES += \
     com.qti.chi.override \
     sound_trigger.primary.sdm845 \
     libFileMux_proprietary \
-    libOmxVideoDSMode \
-    libOmxVpp \
     libSTDualCamCaptureBokeh \
     libSTDualCamPreviewBokeh \
     libSTdisp \
