@@ -18393,49 +18393,6 @@ cc_prebuilt_binary {
 }
 
 cc_prebuilt_binary {
-    name: "wfdhdcphalservice",
-    owner: "oneplus",
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/bin/wfdhdcphalservice",
-            ],
-            shared_libs: [
-                "android.hardware.drm@1.0",
-                "android.hardware.drm@1.1",
-                "android.hardware.drm@1.2",
-                "android.hardware.drm@1.3",
-                "android.hidl.memory@1.0",
-                "libhidlmemory",
-                "libc++",
-                "libhidlbase",
-                "libbinder",
-                "libbase",
-                "liblog",
-                "libutils",
-                "libcutils",
-                "libwfdhdcpcp",
-                "libwfdhdcpservice_proprietary",
-                "libwfdcommonutils_proprietary",
-                "libwfdutils_proprietary",
-                "libqdMetaData",
-                "libavservices_minijail",
-                "libwfddisplayconfig_proprietary",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "32",
-    strip: {
-        none: true,
-    },
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_binary {
     name: "wfdvndservice",
     owner: "oneplus",
     target: {
