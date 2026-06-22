@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
     <!--
-        Copyright (C) 2012 - 2021 Qualcomm Technologies, Inc.
+        Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
         All Rights Reserved.
         Confidential and Proprietary - Qualcomm Technologies, Inc.
     -->
@@ -47,10 +47,15 @@
              <!-- AVC Profile 0 - Constrained Baseline,
                               1 - Constrained High,
                               2 - Constrained High2,
-                              3 - BaseLine
-                              4 - Main
+                              3 - BaseLine,
+                              4 - Main,
                               5 - High
                   HEVC Profile 0 - Main
+                               1 - Main444
+                               2 - SCC8b444
+                               3 - MAIN44410b
+                               4 - MAIN10b
+                               5 - MAIN_STILL
             -->
 
             <!-- Level  0 - 3.1,
@@ -69,7 +74,6 @@
                 <HorizontalResolution>4096</HorizontalResolution>
                 <VerticalResolution>2160</VerticalResolution>
                 <Latency>0</Latency>
-                <MinimumSliceSize>0</MinimumSliceSize>
                 <SliceEncodingParams>0</SliceEncodingParams>
                 <FrameRateControlSupp>1</FrameRateControlSupp>
                 <VideoFps>60</VideoFps>
@@ -84,7 +88,6 @@
                 <HorizontalResolution>4096</HorizontalResolution>
                 <VerticalResolution>2160</VerticalResolution>
                 <Latency>0</Latency>
-                <MinimumSliceSize>0</MinimumSliceSize>
                 <SliceEncodingParams>0</SliceEncodingParams>
                 <FrameRateControlSupp>1</FrameRateControlSupp>
                 <VideoFps>60</VideoFps>
@@ -99,7 +102,6 @@
                 <HorizontalResolution>4096</HorizontalResolution>
                 <VerticalResolution>2160</VerticalResolution>
                 <Latency>0</Latency>
-                <MinimumSliceSize>0</MinimumSliceSize>
                 <SliceEncodingParams>0</SliceEncodingParams>
                 <FrameRateControlSupp>1</FrameRateControlSupp>
                 <VideoFps>60</VideoFps>
@@ -114,7 +116,6 @@
                 <HorizontalResolution>4096</HorizontalResolution>
                 <VerticalResolution>2160</VerticalResolution>
                 <Latency>0</Latency>
-                <MinimumSliceSize>0</MinimumSliceSize>
                 <SliceEncodingParams>0</SliceEncodingParams>
                 <FrameRateControlSupp>1</FrameRateControlSupp>
                 <VideoFps>60</VideoFps>
@@ -129,7 +130,6 @@
                 <HorizontalResolution>4096</HorizontalResolution>
                 <VerticalResolution>2160</VerticalResolution>
                 <Latency>0</Latency>
-                <MinimumSliceSize>0</MinimumSliceSize>
                 <SliceEncodingParams>0</SliceEncodingParams>
                 <FrameRateControlSupp>1</FrameRateControlSupp>
                 <VideoFps>60</VideoFps>
@@ -144,7 +144,6 @@
                 <HorizontalResolution>4096</HorizontalResolution>
                 <VerticalResolution>2160</VerticalResolution>
                 <Latency>0</Latency>
-                <MinimumSliceSize>0</MinimumSliceSize>
                 <SliceEncodingParams>0</SliceEncodingParams>
                 <FrameRateControlSupp>1</FrameRateControlSupp>
                 <VideoFps>60</VideoFps>
@@ -159,7 +158,6 @@
                 <HorizontalResolution>4096</HorizontalResolution>
                 <VerticalResolution>2160</VerticalResolution>
                 <Latency>0</Latency>
-                <MinimumSliceSize>0</MinimumSliceSize>
                 <SliceEncodingParams>0</SliceEncodingParams>
                 <FrameRateControlSupp>1</FrameRateControlSupp>
                 <VideoFps>60</VideoFps>
@@ -167,6 +165,36 @@
                 <NonTranscodingMode>1</NonTranscodingMode>
             </VideoCodec7>
         </VideoFormats>
+
+        <!--
+        Enable HDR (High Dynamic Range) Support
+
+        This configuration controls whether the WFD (WiFi Display) session
+        supports HDR content transmission and processing.
+
+        Values:
+        0: Disabled
+        1: Enabled
+        -->
+        <EnableHDRInWfd>0</EnableHDRInWfd>
+        <!--
+        HDR format capabilities
+            HdrType       : 1 = HDR10, 2 = HDR10 Plus (query from Display)
+            ColorStandard : 8  -> BT.2020
+            ColorTransfer : 4  -> ST2084
+            ColorRange    : 1  -> Full
+            PeakBrightness: 4000 -> peak brightness index (query from Display)
+        -->
+        <HdrFormat>
+            <CodecName>H.265</CodecName>
+            <Profile>4</Profile>
+            <Level>4</Level>
+            <HdrType>2</HdrType>
+            <ColorStandard>8</ColorStandard>
+            <ColorTransfer>4</ColorTransfer>
+            <ColorRange>1</ColorRange>
+            <PeakBrightness>4000</PeakBrightness>
+        </HdrFormat>
 
         <!--
             Aux streaming is new addition
@@ -278,9 +306,20 @@
                     <Wifi>0</Wifi>
                     <NoSP>0</NoSP>
                 </HIDInputPaths>
+                <!--  Supported HIDC input events  -->
+                <CustomHIDCInputPaths>
+                    <Infrared>0</Infrared>
+                    <USB>3</USB>
+                    <BT>0</BT>
+                    <Zigbee>0</Zigbee>
+                    <Wifi>0</Wifi>
+                    <NoSP>0</NoSP>
+                </CustomHIDCInputPaths>
             </InputEvents>
             <!--  TCP port on which UIBC connection established -->
             <TcpPort>4321</TcpPort>
+            <!-- 0/1 - support Custome HIDC or not -->
+            <CustomAppUIBCSupport>0</CustomAppUIBCSupport>
         </UIBC>
     </Capability>
 
@@ -746,11 +785,11 @@
 
     <!--
         Compensation delay for audio
-        This is maintain good AV sync in the mux TS A + V stream Recommended
-        value is 150 msec arrived at this number after fine tuning OEMs can
-        change this value in case they want
+        This is to maintain good AV sync in the mux TS A + V stream.
+        Recommended value is 150us arrived at this number after fine tuning.
+        OEMs can change this value in case they want.
     -->
-    <AudioAVSyncDelay>-150</AudioAVSyncDelay>
+    <AudioAVSyncDelayUs>-150</AudioAVSyncDelayUs>
 
     <!--
         To disable/enable AV Sync - 1 or 0
