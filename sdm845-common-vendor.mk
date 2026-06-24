@@ -10,7 +10,6 @@ PRODUCT_COPY_FILES += \
     vendor/oneplus/sdm845-common/proprietary/system/etc/sysconfig/qti_whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/qti_whitelist.xml \
     vendor/oneplus/sdm845-common/proprietary/system_ext/etc/dpm/dpm.conf:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/dpm/dpm.conf \
     vendor/oneplus/sdm845-common/proprietary/system_ext/etc/init/dpmd.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/dpmd.rc \
-    vendor/oneplus/sdm845-common/proprietary/system_ext/etc/init/wfdservice.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/wfdservice.rc \
     vendor/oneplus/sdm845-common/proprietary/system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.android.hotwordenrollment.common.util.xml \
     vendor/oneplus/sdm845-common/proprietary/system_ext/etc/permissions/com.qti.dpmframework.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.qti.dpmframework.xml \
     vendor/oneplus/sdm845-common/proprietary/system_ext/etc/permissions/dpmapi.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/dpmapi.xml \
@@ -19,9 +18,6 @@ PRODUCT_COPY_FILES += \
     vendor/oneplus/sdm845-common/proprietary/system_ext/etc/permissions/qti_permissions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/qti_permissions.xml \
     vendor/oneplus/sdm845-common/proprietary/system_ext/etc/permissions/telephony_system-ext_privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/telephony_system-ext_privapp-permissions-qti.xml \
     vendor/oneplus/sdm845-common/proprietary/system_ext/etc/permissions/telephonyservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/telephonyservice.xml \
-    vendor/oneplus/sdm845-common/proprietary/system_ext/etc/permissions/wfd-system-ext-privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/wfd-system-ext-privapp-permissions-qti.xml \
-    vendor/oneplus/sdm845-common/proprietary/system_ext/etc/seccomp_policy/wfdservice.policy:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/seccomp_policy/wfdservice.policy \
-    vendor/oneplus/sdm845-common/proprietary/system_ext/etc/wfdconfigsink.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/wfdconfigsink.xml \
     vendor/oneplus/sdm845-common/proprietary/vendor/etc/acdbdata/adsp_avs_config.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/adsp_avs_config.acdb \
     vendor/oneplus/sdm845-common/proprietary/vendor/etc/cacert_location.pem:$(TARGET_COPY_OUT_VENDOR)/etc/cacert_location.pem \
     vendor/oneplus/sdm845-common/proprietary/vendor/etc/camera/ashdr/iso617_4608x3456.ncf:$(TARGET_COPY_OUT_VENDOR)/etc/camera/ashdr/iso617_4608x3456.ncf \
@@ -802,36 +798,13 @@ PRODUCT_PACKAGES += \
     libdpmfdmgr \
     libdpmframework \
     libdpmtcm \
-    libmmosal \
-    libmmparser_lite \
-    libmmrtpdecoder \
-    libmmrtpencoder \
-    libwfdclient \
-    libwfdcommonutils \
-    libwfdconfigutils \
-    libwfddisplayconfig \
-    libwfdmminterface \
-    libwfdmmsink \
-    libwfdrtsp \
-    libwfdsinksm \
-    libwfduibcinterface \
-    libwfduibcsink \
-    libwfduibcsinkinterface \
-    libwfduibcsrc \
-    libwfduibcsrcinterface \
     vendor.qti.diaghal@1.0 \
-    com.qualcomm.qti.wifidisplayhal@1.0 \
-    libwfdavenhancements \
-    libwfdmmsrc_system \
-    libwfdservice \
-    vendor.qti.hardware.wifidisplaysession@1.0 \
     lib-imsvideocodec \
     lib-imsvt \
     lib-imsvtextutils \
     lib-imsvtutils \
     libimscamera_jni \
     libimsmedia_jni \
-    libwfdnative \
     vendor.qti.imsrtpservice@3.0 \
     CneApp \
     IWlanService \
@@ -842,10 +815,8 @@ PRODUCT_PACKAGES += \
     QtiTelephonyService \
     SoterService \
     IFAAService \
-    WfdService \
     ims \
     qcrilmsgtunnel \
-    WfdCommon \
     qcnvitems \
     tcmclient \
     com.android.hotwordenrollment.common.util \
@@ -928,17 +899,12 @@ PRODUCT_PACKAGES += \
     xtra-daemon \
     xtwifi-client \
     xtwifi-inet-agent \
-    dpmd \
-    wfdservice
+    dpmd
 
 PRODUCT_PACKAGES += \
-    system_ext_priv-app_WfdService_lib_arm64_libwfdnative_so \
     vendor_lib_libEGL_adreno_so \
     vendor_lib_libGLESv2_adreno_so \
     vendor_lib_libq3dtools_adreno_so \
     vendor_lib64_libEGL_adreno_so \
     vendor_lib64_libGLESv2_adreno_so \
     vendor_lib64_libq3dtools_adreno_so
-
-PRODUCT_BOOT_JARS += \
-    WfdCommon
