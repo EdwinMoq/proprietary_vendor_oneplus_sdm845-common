@@ -833,6 +833,7 @@ PRODUCT_PACKAGES += \
     libimsmedia_jni \
     libwfdnative \
     vendor.qti.imsrtpservice@3.0 \
+    CACertService \
     CneApp \
     IWlanService \
     TimeService \
